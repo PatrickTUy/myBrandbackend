@@ -1,9 +1,10 @@
-import express from 'express'
+import express from "express";
+import { QueryController } from "./../../controllers/queryController.js";
+const route = express.Router();
+const queryControllers = new QueryController();
+route.post("/", queryControllers.createQuery);
+route.get("/", queryControllers.getAllQueries);
+route.get("/:id", queryControllers.getQuery);
+route.delete("/:id", queryControllers.deleteQuery);
 
-const route = express.Router()
-
-route.get('/', (req, res, next) => {
-    res.status(200).json({ status: 200, message: "this will return all queries", data: "" })
-})
-
-export default route
+export default route;

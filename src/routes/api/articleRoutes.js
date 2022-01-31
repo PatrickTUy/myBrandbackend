@@ -1,9 +1,36 @@
-import express from 'express'
+import express from "express";
+import oneArticleRoute from "./oneArticleRoute.js";
+import { ArticleController } from "./../../controllers/articleController.js";
+import { CommentController } from "./../../controllers/commentController.js";
 
-const route = express.Router()
+import multer from "multer";
+const route = express.Router({ mergeParams: true });
 
-route.get('/', (req, res, next) => {
-    res.status(200).json({ status: 200, message: "this will return all articles", data: "" })
-})
+const storage = multer.diskStorage({});
 
-export default route
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image")) {
+    cb(null, true);
+  } else {
+    cb("invalid image file!", false);
+  }
+};
+
+const uploads = multer({ storage, fileFilter });
+
+const articleControllers = new ArticleController();
+const commentControllers = new CommentController();
+route.post("/", uploads.single("image"), articleControllers.createArticle);
+route.get("/", articleControllers.getAllArticles);
+
+route.use(
+  "/:id",
+  uploads.single("image"),
+  (req, res, next) => {
+    console.log(req.params.id);
+    return next();
+  },
+  oneArticleRoute
+);
+
+export default route;
