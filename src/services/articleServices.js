@@ -1,38 +1,33 @@
-// import the model you need to access
 import Article from "../models/article.js";
 
 export const createArticleService = async (data) => {
-  const article = await Article(data);
-  article.save();
-  return article;
-};
+    const article = await Article(data)
+    article.save()
+    return article
+}
 
 export const getAllArticlesService = async () => {
-  const articles = await Article.find();
-  return articles;
-};
+    const articles = await Article.find()
+    return articles
+}
 
 export const getOneArticleService = async (id) => {
-  const article = await Article.findOne({ _id: id });
+    const article = await Article.findOne({ _id: id })
+    return article
+}
 
-  return article;
-};
-export const updateArticleService = async (id, data) => {
-  const update = await Article.findOne({ _id: id });
-  if (data.title) {
-    update.title = data.title;
-  }
-  if (data.content) {
-    update.content = data.content;
-  }
-  if (data.image) {
-    update.image = data.image;
-  }
+export const updateArticleService =async (id,articleUpdate) =>{
+    const updatedArticle = await Article.findOneAndUpdate({ _id: id }, articleUpdate, { new: true });
+    return updatedArticle
+    
+}
 
-  await update.save();
-  return update;
-};
-export const deleteArticleService = async (id) => {
-  const deletedArticle = await Article.deleteOne({ _id: id });
-  return deletedArticle;
-};
+export const deleteArticleService =async (id) =>{
+    const deletedArticle = await Article.findByIdAndDelete(id)
+    if(deletedArticle){
+        return "Article deleted successfully"
+    } else{
+        return "Article does not exists"
+    }
+    
+}
