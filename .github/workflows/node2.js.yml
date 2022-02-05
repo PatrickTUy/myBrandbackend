@@ -9,8 +9,8 @@ on:
   pull_request:
     branches: [ develop ]
 env:
-    TEST_DB: ${{secrets.TEST_DB}}
-    JWT_SECRETE: ${{secrets.JWT_SECRETE}}
+  TEST_DB: ${{secrets.TEST_DB}}
+  JWT_SECRETE: ${{secrets.JWT_SECRETE}}
 jobs:
   build:
 
