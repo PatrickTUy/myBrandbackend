@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "presets": ["@babel/preset-env"],
   "plugins": [
     [
@@ -11,9 +10,3 @@
     ["@babel/plugin-proposal-class-properties"]
   ]
 }
-=======
-    "presets": [
-      "@babel/preset-env"
-    ]
-  }
->>>>>>> f114c0c (worked on auth,validation and tests)
