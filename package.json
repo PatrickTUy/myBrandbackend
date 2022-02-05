@@ -12,22 +12,14 @@
   },
   "betterScripts": {
     "dev": {
-<<<<<<< HEAD
       "command": "nodemon --exec ./node_modules/.bin/babel-node ./src/app.js",
-=======
-      "command": "nodemon --exec babel-node ./src/app.js",
->>>>>>> d426a6952d01ac4c52d423c12cc80755727d3c31
       "env": {
         "NODE_ENV": "development",
         "PORT": 3000
       }
     },
     "test": {
-<<<<<<< HEAD
       "command": "nyc --reporter=html --reporter=text mocha --require @babel/register ./tests/* --timeout 1000000 --exit || true",
-=======
-      "command": "nyc mocha ./tests/**/*.test.js --exit --inspect=0.0.0.0:9229 --timeout 120000",
->>>>>>> d426a6952d01ac4c52d423c12cc80755727d3c31
       "env": {
         "NODE_ENV": "test",
         "PORT": 5000
@@ -53,22 +45,22 @@
   "homepage": "",
   "dependencies": {
     "@babel/cli": "^7.17.0",
-<<<<<<< HEAD
     "@babel/plugin-proposal-class-properties": "^7.16.7",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
-=======
->>>>>>> d426a6952d01ac4c52d423c12cc80755727d3c31
     "@babel/register": "^7.17.0",
     "bcrypt": "^5.0.1",
     "better-npm-run": "^0.1.1",
     "cloudinary": "^1.28.1",
+    "cors": "^2.8.5",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.8",
+    "morgan": "^1.10.0",
     "multer": "^1.4.4",
+    "swagger-ui-express": "^4.3.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {

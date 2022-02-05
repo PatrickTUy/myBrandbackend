@@ -1,10 +1,10 @@
 export const validUser = {
-  email: "patricktuy@gmail.com",
-  password: "Password1!",
+  email: "exampl@gmail.com",
+  password: "exampl12@!",
 };
 
 export const userData = {
-  username: "Patrick",
-  email: "patricktuy@gmail.com",
-  password: "Password1!",
+  username: "RUDAHUNGA Emile",
+  email: "exampl@gmail.com",
+  password: "exampl12@!",
 };
