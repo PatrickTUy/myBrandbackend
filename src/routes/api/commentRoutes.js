@@ -1,10 +1,20 @@
-import  express  from "express";
+import express from "express";
+import multer from "multer";
+import { CommentController } from "./../../controllers/commentsController.js";
+import { fileFilter } from "../../helpers/fileFilter.js";
 
-import { CommentController } from './../../controllers/commentsController.js'
+const route = express.Router();
 
-const route = express.Router()
-const commentsControllers = new CommentController()
-route.post('/:articleId', commentsControllers.createComment)
-route.get('/:articleId', commentsControllers.getAllArticleComments)
+const storage = multer.diskStorage({});
 
-export default route
+const uploads = multer({ storage, fileFilter });
+const commentsControllers = new CommentController();
+
+route.post(
+  "/:articleId",
+  uploads.single(""),
+  commentsControllers.createComment
+);
+route.get("/:articleId", commentsControllers.getAllArticleComments);
+
+export default route;

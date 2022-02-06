@@ -161,6 +161,75 @@
             "description": "Success"
           }
         }
+      },
+      "patch": {
+        "tags": ["Articles"],
+        "summary": "Update article",
+        "description": "Update article",
+        "operationId": "updateArticle",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "description": "title",
+            "required": true
+          },
+          {
+            "name": "content",
+            "in": "formData",
+            "description": "content",
+            "required": true
+          },
+          {
+            "name": "image",
+            "in": "formData",
+            "type": "file",
+            "description": "image",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Articles"],
+        "summary": "Delete one article",
+        "description": "Delete one article",
+        "operationId": "deleteoneArticle",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Authorization",
+            "required": true
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
       }
     },
     "/api/v1/queries": {
@@ -242,13 +311,22 @@
         "operationId": "postComments",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "description": "Comment",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Comment"
-            }
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "name",
+            "required": true
+          },
+          {
+            "name": "comment",
+            "in": "formData",
+            "description": "comment",
+            "required": true
           }
         ],
         "responses": {
@@ -267,17 +345,6 @@
           "type": "string"
         },
         "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Comment": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "message": {
           "type": "string"
         }
       }

@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import routes from "./routes/index.js";
 import cors from "cors";
@@ -30,9 +30,11 @@ try {
         console.log("PROD DB CONNECTED");
       });
   }
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(cors());
   app.use(morgan("dev"));
+
   // app.use("/", (req, res) => {
   //   res.json({ message: "Welcome to the Api" });
   // });

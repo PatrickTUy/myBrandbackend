@@ -10,7 +10,7 @@ export class CommentController {
         name: req.body.name,
         comment: req.body.comment,
       };
-      console.log(data);
+      console.log(req.body);
 
       const comment = await createCommentService(req.params.articleId, data);
       res.status(201).json({
