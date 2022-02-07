@@ -29,6 +29,47 @@
         }
       }
     },
+    "/api/v1/users/register": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create user",
+        "description": "Create user",
+        "operationId": "postUsers",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "formData",
+            "description": "username",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "email",
+            "required": true
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "password",
+            "required": true
+          },
+          {
+            "name": "picture",
+            "in": "formData",
+            "type": "file",
+            "description": "picture",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+
     "/api/v1/users/login": {
       "post": {
         "tags": ["Users"],
@@ -115,44 +156,6 @@
             "name": "id",
             "in": "path",
             "description": "id",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      },
-      "post": {
-        "tags": ["Articles"],
-        "summary": "Create article",
-        "description": "Create article",
-        "operationId": "postArticles",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Authorization",
-            "required": true
-          },
-          {
-            "name": "title",
-            "in": "formData",
-            "description": "title",
-            "required": true
-          },
-          {
-            "name": "content",
-            "in": "formData",
-            "description": "content",
-            "required": true
-          },
-          {
-            "name": "image",
-            "in": "formData",
-            "type": "file",
-            "description": "image",
             "required": true
           }
         ],
