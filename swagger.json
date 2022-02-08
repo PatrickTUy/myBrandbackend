@@ -1,9 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "API",
+    "title": "My Brand API",
     "description": "API",
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "contact": {
+      "name": "TUYISHIMIRE YANGENEYE Patrick",
+      "email": "yangeney@gmail.com"
+    }
   },
   "servers": [
     {
@@ -15,6 +19,13 @@
       "name": "PROD"
     }
   ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
   "paths": {
     "/": {
       "get": {
@@ -113,12 +124,6 @@
         "operationId": "postArticles",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Authorization",
-            "required": true
-          },
-          {
             "name": "title",
             "in": "formData",
             "description": "title",
@@ -142,7 +147,12 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/api/v1/articles/{id}": {
@@ -172,12 +182,6 @@
         "operationId": "updateArticle",
         "parameters": [
           {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Authorization",
-            "required": true
-          },
-          {
             "name": "id",
             "in": "path",
             "description": "id",
@@ -207,7 +211,12 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Articles"],
@@ -215,12 +224,6 @@
         "description": "Delete one article",
         "operationId": "deleteoneArticle",
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Authorization",
-            "required": true
-          },
           {
             "name": "id",
             "in": "path",
@@ -232,7 +235,12 @@
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       }
     },
     "/api/v1/queries": {
@@ -241,19 +249,17 @@
         "summary": "Get all Queries",
         "description": "Get all Queries",
         "operationId": "getQueries",
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Authorization",
-            "required": true
-          }
-        ],
+        "parameters": [],
         "responses": {
           "200": {
             "description": "Success"
           }
-        }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
       },
       "post": {
         "tags": ["Queries"],
