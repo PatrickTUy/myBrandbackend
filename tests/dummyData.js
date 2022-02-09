@@ -18,6 +18,35 @@ export const userData = {
   email: "mufilimini@gmail.com",
   password: "omoge12@!",
 };
+export const validUser2 = {
+  email: "exampl@gmail.com",
+  password: "exampl12@!",
+};
+export const userData2 = {
+  username: "ezel",
+  email: "ezel@gmail.com",
+  password: "Password2!",
+};
+
+export const validUser3 = {
+  email: "user1@gmail.com",
+  password: "user12@!",
+};
+export const userData3 = {
+  username: "eysan",
+  email: "eysan@gmail.com",
+  password: "Password3!",
+};
+
+export const validUsertoDelete = {
+  email: "user2@gmail.com",
+  password: "user12@!",
+};
+export const userDatatoDelete = {
+  username: "muhire",
+  email: "muha@yahoo.fr",
+  password: "Password4!",
+};
 
 export const article = {
   title: "Test title dummy",
