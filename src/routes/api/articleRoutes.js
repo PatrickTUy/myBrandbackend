@@ -1,36 +1,24 @@
-import express from "express";
-import oneArticleRoute from "./oneArticleRoute.js";
-import { ArticleController } from "./../../controllers/articleController.js";
-import { CommentController } from "./../../controllers/commentController.js";
+import express from 'express'
+import { ArticleController } from './../../controllers/articleController.js'
 
-import multer from "multer";
-const route = express.Router({ mergeParams: true });
+import multer from 'multer';
+import { fileFilter } from '../../helpers/fileFilter.js';
+import { authenticate } from '../../middlewares/authenticate.js';
+import { articleValidation } from '../../validations/articleValidation/article.validation.js';
+
+const route = express.Router()
 
 const storage = multer.diskStorage({});
 
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image")) {
-    cb(null, true);
-  } else {
-    cb("invalid image file!", false);
-  }
-};
 
 const uploads = multer({ storage, fileFilter });
+const articleControllers = new ArticleController()
 
-const articleControllers = new ArticleController();
-const commentControllers = new CommentController();
-route.post("/", uploads.single("image"), articleControllers.createArticle);
-route.get("/", articleControllers.getAllArticles);
+route.post('/', authenticate, uploads.single('image'), articleValidation, articleControllers.createArticle)
+route.get('/', articleControllers.getAllArticles)
+route.get('/:id', articleControllers.getArticle)
+route.patch('/:id', authenticate, uploads.single('image'), articleControllers.updateArticle)
+route.delete('/:id', authenticate, articleControllers.deleteArticle)
 
-route.use(
-  "/:id",
-  uploads.single("image"),
-  (req, res, next) => {
-    console.log(req.params.id);
-    return next();
-  },
-  oneArticleRoute
-);
 
-export default route;
+export default route

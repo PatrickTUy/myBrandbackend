@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
-
 const schema = mongoose.Schema({
-  names: String,
-  email: String,
+  name: String,
   comment: String,
-  create_at: Date,
+  create_at: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 export default mongoose.model("Comment", schema);
