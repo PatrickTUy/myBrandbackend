@@ -33,7 +33,9 @@ try {
   app.use(express.urlencoded({ extended: true }));
   app.use(express.json());
   app.use(cors());
+
   app.use(morgan("dev"));
+ 
 
   // app.use("/", (req, res) => {
   //   res.json({ message: "Welcome to the Api" });

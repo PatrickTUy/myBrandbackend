@@ -1,13 +1,23 @@
-import express from 'express'
-import { QueryController } from './../../controllers/queriesController.js'
-import { authenticate } from '../../middlewares/authenticate.js';
-import { queryValidation } from '../../validations/queryValidation/query.validation.js';
+import express from "express";
+import { QueryController } from "./../../controllers/queriesController.js";
+import { authenticate } from "../../middlewares/authenticate.js";
+import { queryValidation } from "../../validations/queryValidation/query.validation.js";
+import multer from "multer";
+import { fileFilter } from "../../helpers/fileFilter.js";
 
-const router = express.Router()
-const queryControllers = new QueryController()
-router.post('/',queryValidation, queryControllers.createQuery)
-router.get('/',authenticate, queryControllers.getAllQueries)
-router.get('/:id', authenticate,queryControllers.getQuery)
-router.delete('/:id',authenticate, queryControllers.deleteQuery)
+const storage = multer.diskStorage({});
+const uploads = multer({ storage, fileFilter });
 
-export default router
+const router = express.Router();
+const queryControllers = new QueryController();
+router.post(
+  "/",
+  uploads.single(""),
+  queryValidation,
+  queryControllers.createQuery
+);
+router.get("/", authenticate, queryControllers.getAllQueries);
+router.get("/:id", authenticate, queryControllers.getQuery);
+router.delete("/:id", authenticate, queryControllers.deleteQuery);
+
+export default router;

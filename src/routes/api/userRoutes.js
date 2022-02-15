@@ -19,7 +19,9 @@ route.post(
   userValidation,
   userControllers.register
 );
-route.post("/login", userControllers.login);
+route.post("/login", uploads.single(""), async (req, res, next) => {
+  await userControllers.login(req,res,next);
+});
 route.patch(
   "/:email",
   authenticate,

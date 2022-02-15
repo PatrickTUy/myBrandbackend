@@ -48,6 +48,7 @@ export class UserControllers {
         const valid = await comparePassword(req.body.password, exist.password);
         if (!valid) {
           res.status(403).json({ status: 403, message: "Invalid credentials" });
+          return;
         }
         const token = await generateToken({ id: exist._id });
         res.status(200).json({
@@ -57,9 +58,11 @@ export class UserControllers {
         });
       } else {
         res.status(403).json({ status: 403, message: "Invalid credentials" });
+        return;
       }
     } catch (error) {
       res.status(500).json({ message: "Internal server error!" });
+      return;
     }
   }
 
